@@ -48,28 +48,28 @@ const Step2 = ({ recipeData, setRecipeData }) => {
 
             <div className="bg-slate-900 p-6 rounded-2xl border border-slate-800 text-white shadow-lg">
                 <h3 className="font-bold mb-4 flex items-center gap-2 text-amber-500"><Plus size={18} /> Novo Insumo</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 gap-4">
-                    <div className="sm:col-span-2 md:col-span-3 lg:col-span-3">
-                        <label className="text-[10px] uppercase font-bold text-slate-400">Produto</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 gap-4 items-end">
+                    <div className="flex flex-col sm:col-span-2 md:col-span-3 lg:col-span-3">
+                        <label className="text-[10px] uppercase font-bold text-slate-400 mb-1">Produto</label>
                         <input
-                            className="w-full p-2 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-amber-500 transition-colors"
+                            className="w-full h-10 px-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-amber-500 transition-colors"
                             value={currentIngredient.produto}
                             onChange={(e) => setCurrentIngredient({ ...currentIngredient, produto: e.target.value })}
                             placeholder="Ex: Farinha de Trigo"
                         />
                     </div>
                     <div className="flex flex-col sm:col-span-1 md:col-span-1 lg:col-span-3">
-                        <label className="text-[10px] uppercase font-bold text-slate-400">Qtd Líquida (C)</label>
-                        <div className="flex bg-slate-800 rounded-lg border border-slate-700 overflow-hidden focus-within:border-amber-500 transition-colors">
+                        <label className="text-[10px] uppercase font-bold text-slate-400 mb-1">Qtd Líquida (C)</label>
+                        <div className="flex h-10 bg-slate-800 rounded-lg border border-slate-700 overflow-hidden focus-within:border-amber-500 transition-colors">
                             <input
                                 type="number"
-                                className="w-full p-2 bg-transparent border-none text-white outline-none min-w-[60px]"
+                                className="w-full h-full px-3 bg-transparent border-none text-white outline-none min-w-[60px]"
                                 value={currentIngredient.quantidade_liquida}
                                 onChange={(e) => setCurrentIngredient({ ...currentIngredient, quantidade_liquida: e.target.value })}
                                 placeholder="Ex: 750"
                             />
                             <select
-                                className="bg-slate-700 text-amber-500 font-bold px-2 outline-none border-l border-slate-600 w-20 text-center cursor-pointer"
+                                className="h-full bg-slate-700 text-amber-500 font-bold px-2 outline-none border-l border-slate-600 w-20 text-center cursor-pointer"
                                 value={currentIngredient.unidade}
                                 onChange={(e) => setCurrentIngredient({ ...currentIngredient, unidade: e.target.value })}
                             >
@@ -79,31 +79,31 @@ const Step2 = ({ recipeData, setRecipeData }) => {
                             </select>
                         </div>
                     </div>
-                    <div className="sm:col-span-1 md:col-span-1 lg:col-span-2">
-                        <label className="text-[10px] uppercase font-bold text-slate-400">Rendimento % (F)</label>
+                    <div className="flex flex-col sm:col-span-1 md:col-span-1 lg:col-span-2">
+                        <label className="text-[10px] uppercase font-bold text-slate-400 mb-1">Rendimento % (F)</label>
                         <input
                             type="number"
-                            className="w-full p-2 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-amber-500 transition-colors"
+                            className="w-full h-10 px-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-amber-500 transition-colors"
                             value={currentIngredient.rendimento_percentual}
                             onChange={(e) => setCurrentIngredient({ ...currentIngredient, rendimento_percentual: e.target.value })}
                             placeholder="Ex: 100"
                         />
                     </div>
-                    <div className="sm:col-span-1 md:col-span-1 lg:col-span-2">
-                        <label className="text-[10px] uppercase font-bold text-slate-400">Qtd Bruta Emb. (G)</label>
+                    <div className="flex flex-col sm:col-span-1 md:col-span-1 lg:col-span-2">
+                        <label className="text-[10px] uppercase font-bold text-slate-400 mb-1">Qtd Bruta Emb. (G)</label>
                         <input
                             type="number"
-                            className="w-full p-2 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-amber-500 transition-colors"
+                            className="w-full h-10 px-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-amber-500 transition-colors"
                             value={currentIngredient.quantidade_bruta}
                             onChange={(e) => setCurrentIngredient({ ...currentIngredient, quantidade_bruta: e.target.value })}
                             placeholder="Ex: 1000"
                         />
                     </div>
-                    <div className="sm:col-span-1 md:col-span-1 lg:col-span-2">
-                        <label className="text-[10px] uppercase font-bold text-slate-400">Preço Bruto Emb. (E)</label>
+                    <div className="flex flex-col sm:col-span-1 md:col-span-1 lg:col-span-2">
+                        <label className="text-[10px] uppercase font-bold text-slate-400 mb-1">Preço Bruto Emb. (E)</label>
                         <input
                             type="number"
-                            className="w-full p-2 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-amber-500 transition-colors"
+                            className="w-full h-10 px-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-amber-500 transition-colors"
                             value={currentIngredient.preco_bruto_unidade}
                             onChange={(e) => setCurrentIngredient({ ...currentIngredient, preco_bruto_unidade: e.target.value })}
                             placeholder="Ex: 5.00"
