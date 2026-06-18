@@ -1,11 +1,12 @@
 import React from 'react';
 import { Download, Eye, Calculator } from 'lucide-react';
-import { calculateTotalCost, calculateCostPerPortion } from '../../utils/calculations';
+import { calculateTotalCost, calculateCostPerPortion, calculateSellingPrice } from '../../utils/calculations';
 import { exportToFormattedExcel } from '../../utils/exportExcel';
 
 const Step4 = ({ recipeData }) => {
     const totalCost = calculateTotalCost(recipeData.ingredientes);
     const costPerPortion = calculateCostPerPortion(totalCost, recipeData.rendimento_porcoes);
+    const sellingPrice = calculateSellingPrice(costPerPortion);
 
     const handleExport = () => {
         exportToFormattedExcel(recipeData, totalCost, costPerPortion);
@@ -19,14 +20,18 @@ const Step4 = ({ recipeData }) => {
                         <h2 className="text-3xl font-black mb-2 text-amber-500">{recipeData.prato || 'Sem Nome'}</h2>
                         <p className="text-slate-400 uppercase text-xs tracking-widest font-bold">Ficha Concluída com Sucesso</p>
                     </div>
-                    <div className="flex gap-4">
-                        <div className="bg-slate-800 p-4 rounded-2xl border border-slate-700 min-w-[140px] text-center">
+                    <div className="flex gap-4 flex-wrap justify-center md:justify-end">
+                        <div className="bg-slate-800 p-4 rounded-2xl border border-slate-700 min-w-[130px] text-center">
                             <span className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Custo Total</span>
-                            <span className="text-2xl font-black text-white">R$ {totalCost}</span>
+                            <span className="text-xl font-black text-white">R$ {totalCost}</span>
                         </div>
-                        <div className="bg-amber-500 p-4 rounded-2xl min-w-[140px] text-center">
-                            <span className="block text-[10px] text-amber-900 uppercase font-bold mb-1">Custo Unitário</span>
-                            <span className="text-2xl font-black text-slate-900">R$ {costPerPortion}</span>
+                        <div className="bg-slate-800 p-4 rounded-2xl border border-slate-700 min-w-[130px] text-center">
+                            <span className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Custo Unitário</span>
+                            <span className="text-xl font-black text-white">R$ {costPerPortion}</span>
+                        </div>
+                        <div className="bg-amber-500 p-4 rounded-2xl min-w-[130px] text-center">
+                            <span className="block text-[10px] text-amber-900 uppercase font-bold mb-1">Preço Venda (3.05x)</span>
+                            <span className="text-xl font-black text-slate-900">R$ {sellingPrice}</span>
                         </div>
                     </div>
                 </div>
@@ -62,7 +67,9 @@ const Step4 = ({ recipeData }) => {
                         {/* Row 9 */}
                         <div className="bg-slate-100 p-1 font-bold border">Prato</div>
                         <div className="col-span-4 bg-white p-1 border">{recipeData.prato}</div>
-                        <div className="col-span-3"></div>
+                        <div className="bg-slate-100 p-1 font-bold border">Preço Venda</div>
+                        <div className="bg-green-100 p-1 border font-bold">R$ {sellingPrice}</div>
+                        <div className=""></div>
 
                         {/* Row 10 - NOVO: Aluno */}
                         <div className="bg-slate-100 p-1 font-bold border">Aluno</div>

@@ -115,6 +115,17 @@ export const exportToFormattedExcel = async (recipeData, total, perPortion) => {
   cellPratoLabel.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'F8FAFC' } };
   cellPratoLabel.border = styleBorder;
 
+  const row9 = worksheet.getRow(9);
+  row9.getCell('G').value = 'Preço Venda';
+  row9.getCell('H').value = { formula: 'H8*3.0536' };
+  row9.getCell('H').numFmt = '"R$ "0.00';
+  [row9.getCell('G'), row9.getCell('H')].forEach(cell => {
+    cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: colorResult } };
+    cell.font = { bold: true, color: { argb: '166534' } };
+    cell.border = styleBorder;
+    cell.alignment = { horizontal: 'center', vertical: 'middle' };
+  });
+
   // --- ALUNO (Linha 10) ---
   worksheet.mergeCells('B10:E10');
   const cellAlunoLabel = worksheet.getCell('B10');
@@ -158,14 +169,13 @@ export const exportToFormattedExcel = async (recipeData, total, perPortion) => {
     currentRow.getCell('F').value = Number(ing.rendimento_percentual);
     currentRow.getCell('F').numFmt = '0"%"';
 
-    // Fórmulas reativas:
-    // Qtd Bruta = Qtd Líquida / (Rendimento / 100)
-    currentRow.getCell('G').value = { formula: `C${rowNum}/(F${rowNum}/100)` };
+    // Qtd Bruta (tamanho total da embalagem comprada)
+    currentRow.getCell('G').value = Number(ing.quantidade_bruta || ing.qto_bruta);
     currentRow.getCell('G').numFmt = '0.00';
 
-    // Preço Líquido = Qtd Bruta * (Preço Bruto / (Se unid, 1, senão 1000))
+    // Preço Líquido = (Quantidade / (Quantidade Bruta * Rendimento %)) * Preço Bruto
     currentRow.getCell('H').value = {
-      formula: `G${rowNum}*(E${rowNum}/IF(D${rowNum}="unid",1,1000))`
+      formula: `=(C${rowNum}/(G${rowNum}*(F${rowNum}/100)))*E${rowNum}`
     };
     currentRow.getCell('H').numFmt = '"R$ "0.00';
 
