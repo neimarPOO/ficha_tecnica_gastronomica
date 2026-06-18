@@ -1,5 +1,5 @@
 import React from 'react';
-import { Download, Eye, Calculator, TrendingUp, ExternalLink } from 'lucide-react';
+import { Download, Eye, Calculator } from 'lucide-react';
 import { calculateTotalCost, calculateCostPerPortion, calculateSellingPrice } from '../../utils/calculations';
 import { exportToFormattedExcel } from '../../utils/exportExcel';
 
@@ -109,28 +109,6 @@ const Step4 = ({ recipeData }) => {
                     </div>
                     <div className="mt-4 opacity-70 italic text-blue-600 font-bold">Layout sincronizado 100% com o modelo do Google Sheets.</div>
                 </div>
-            </div>
-
-            <div className="bg-amber-50 p-6 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border border-amber-100">
-                <div className="flex items-start gap-4">
-                    <div className="bg-amber-500 p-3 rounded-full text-slate-900 flex-shrink-0">
-                        <TrendingUp size={24} />
-                    </div>
-                    <div>
-                        <h4 className="font-bold text-amber-900">Custos e Mercado</h4>
-                        <p className="text-amber-800 text-sm leading-relaxed">
-                            Utilize o preço sugerido de venda com base no Markup para se posicionar competitivamente no mercado de gastronomia.
-                        </p>
-                    </div>
-                </div>
-                <a
-                    href="https://ficha-tecnica-gastronomica.netlify.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-amber-500 text-slate-900 px-5 py-3 rounded-xl font-bold text-xs hover:bg-amber-400 transition-all shadow-md hover:shadow-lg flex-shrink-0 cursor-pointer"
-                >
-                    Acessar Ferramenta Recomendada <ExternalLink size={14} />
-                </a>
             </div>
 
             <div className="bg-emerald-50 p-6 rounded-2xl flex items-center gap-4 border border-emerald-100">
